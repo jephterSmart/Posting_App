@@ -10,4 +10,4 @@ app.use('*',(req,res)=>{
     res.sendFile( path.join(pathToBuild,'index.html'));
    })
 
-app.listen(process.env.PORT || 8080)
+app.listen(process.env.PORT || 3200)
