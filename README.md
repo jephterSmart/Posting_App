@@ -8,4 +8,4 @@ To see read more about a person post you can click **view**
 * Authentication
 * Authorization
 * Rest API
-To see the running application [**Click**](https://uzezijephter-restapi-frontend.herokuapp.com "Posting Application")
+To see the running application [**Click Here**](https://uzezijephter-restapi-frontend.herokuapp.com "Posting Application")
