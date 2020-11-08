@@ -23,7 +23,7 @@ class Feed extends Component {
   };
   
   componentDidMount() {
-    fetch('https://uzezijephter-restapi.herokuapp.com/feed/status',{
+    fetch('http://localhost:8080/feed/status',{
       headers:{
         Authorization: 'Bearer '+this.props.token
       }
@@ -40,7 +40,7 @@ class Feed extends Component {
       .catch(this.catchError);
 
     this.loadPosts();
-    const socket = openSocket('https://uzezijephter-restapi.herokuapp.com');
+    const socket = openSocket('http://localhost:8080');
     socket.on('posts',data => {
       if(data.action === 'create')
       this.addPost(data.post)
@@ -94,7 +94,7 @@ this.setState(prevState => {
       page--;
       this.setState({ postPage: page });
     }
-    fetch('https://uzezijephter-restapi.herokuapp.com/feed/posts?page='+ page,{
+    fetch('http://localhost:8080/feed/posts?page='+ page,{
       headers:{
         Authorization: 'Bearer '+this.props.token
       }
@@ -123,7 +123,7 @@ this.setState(prevState => {
 
   statusUpdateHandler = event => {
     event.preventDefault();
-    fetch('https://uzezijephter-restapi.herokuapp.com/feed/status',{
+    fetch('http://localhost:8080/feed/status',{
       headers:{
         Authorization: 'Bearer '+this.props.token,
         'Content-Type':'application/json'
@@ -172,10 +172,10 @@ this.setState(prevState => {
     formData.append('title', postData.title);
     formData.append('content', postData.content);
     formData.append('image', postData.image);
-    let url = 'https://uzezijephter-restapi.herokuapp.com/feed/post';
+    let url = 'http://localhost:8080/feed/post';
     let method = 'POST';
     if (this.state.editPost) {
-      url = 'https://uzezijephter-restapi.herokuapp.com/feed/post/' + this.state.editPost._id;
+      url = 'http://localhost:8080/feed/post/' + this.state.editPost._id;
       method = 'PUT';
     }
 
@@ -225,6 +225,8 @@ this.setState(prevState => {
             editLoading: false
           };
         });
+
+
       })
       .catch(err => {
         console.log(err);
@@ -244,7 +246,7 @@ this.setState(prevState => {
 
   deletePostHandler = postId => {
     this.setState({ postsLoading: true });
-    fetch('https://uzezijephter-restapi.herokuapp.com/feed/post/' + postId,{
+    fetch('http://localhost:8080/feed/post/' + postId,{
       method:'DELETE',
       headers:{
         Authorization: 'Bearer '+this.props.token
